@@ -14,7 +14,7 @@ test_script:
   - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=OpenCover /p:CoverletOutput=./Coverage.xml
 
 after_test:
-  - codecov -f .\ReportPortal.Client.Tests\Coverage.xml
+  - codecov -f .\test\ReportPortal.Client.Tests\Coverage.xml
 
 artifacts:
   - path: '**\*.nupkg'

@@ -9,26 +9,26 @@ using ReportPortal.Client.Extention;
 
 namespace ReportPortal.Client.Api.Project
 {
-    public class ProjectApiClient: BaseApiClient, IProjectApiClient
+    public class ProjectApiClient : BaseApiClient, IProjectApiClient
     {
-        public ProjectApiClient(HttpClient httpCLient, Uri baseUri, string project) : base(httpCLient, baseUri, project)
+        public ProjectApiClient(HttpClient httpClient, string project) : base(httpClient, project)
         {
         }
 
-        public virtual async Task<UpdatePreferencesResponse> UpdatePreferencesAsync(UpdatePreferenceRequest model, string userName)
+        public async Task<UpdatePreferencesResponse> UpdatePreferencesAsync(UpdatePreferenceRequest model, string userName)
         {
-            var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
+            var uri = HttpClient.BaseAddress.Append($"project/{Project}/preference/{userName}");
             var body = ModelSerializer.Serialize<UpdatePreferenceRequest>(model);
-            
+
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<UpdatePreferencesResponse>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<Preference> GetAllPreferences(string userName)
+        public async Task<Preference> GetAllPreferences(string userName)
         {
-            var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
-            
+            var uri = HttpClient.BaseAddress.Append($"project/{Project}/preference/{userName}");
+
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<Preference>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));

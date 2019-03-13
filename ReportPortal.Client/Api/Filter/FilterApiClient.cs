@@ -15,13 +15,13 @@ namespace ReportPortal.Client.Api.Filter
 {
     public class FilterApiClient: BaseApiClient, IFilterApiClient
     {
-        public FilterApiClient(HttpClient httpCLient, Uri baseUri, string project) : base(httpCLient, baseUri, project)
+        public FilterApiClient(HttpClient httpClient, string project) : base(httpClient, project)
         {
         }
 
-        public virtual async Task<List<EntryCreated>> AddUserFilterAsync(AddUserFilterRequest model)
+        public async Task<List<EntryCreated>> AddUserFilterAsync(AddUserFilterRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/filter");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/filter");
 
             var body = ModelSerializer.Serialize<AddUserFilterRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
@@ -29,9 +29,9 @@ namespace ReportPortal.Client.Api.Filter
             return ModelSerializer.Deserialize<List<EntryCreated>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<PagingContent<FilterModel>> GetUserFiltersAsync(FilterOption filterOption = null)
+        public async Task<PagingContent<FilterModel>> GetUserFiltersAsync(FilterOption filterOption = null)
         {
-            var uri = BaseUri.Append($"{Project}/filter/");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/filter/");
             if (filterOption != null)
             {
                 uri = uri.Append($"?{filterOption}");
@@ -41,9 +41,9 @@ namespace ReportPortal.Client.Api.Filter
             return ModelSerializer.Deserialize<PagingContent<FilterModel>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<Message> DeleteUserFilterAsync(string filterId)
+        public async Task<Message> DeleteUserFilterAsync(string filterId)
         {
-            var uri = BaseUri.Append($"{Project}/filter/{filterId}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/filter/{filterId}");
 
             var response = await HttpClient.DeleteAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

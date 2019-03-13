@@ -9,13 +9,13 @@ namespace ReportPortal.Client.Api.User
 {
     public class UserApiClient : BaseApiClient, IUserApiClient
     {
-        public UserApiClient(HttpClient httpClient, Uri baseUri, string project) : base(httpClient, baseUri, project)
+        public UserApiClient(HttpClient httpClient, string project) : base(httpClient, project)
         {
         }
 
-        public virtual async Task<UserModel> GetUserAsync()
+        public async Task<UserModel> GetUserAsync()
         {
-            var uri = BaseUri.Append("user");
+            var uri = HttpClient.BaseAddress.Append("/user");
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<UserModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));

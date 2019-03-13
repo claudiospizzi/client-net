@@ -2,10 +2,29 @@
 
 namespace ReportPortal.Client
 {
+    /// <summary>
+    /// ReportPortal Web API definition. Provides possibility to manage almost of service's entities.
+    /// </summary>
     public interface IReportPortalClient
     {
-        string ProjectName { get; set; }
+        HttpClient HttpClient { get; }
 
-        Uri BaseUri { get; set; }
+        string ProjectName { get; }
+
+        #region Resources
+
+        ILaunchApiClient Launch { get; }
+
+        ILogApiClient Log { get; }
+
+        IProjectApiClient Project { get; }
+
+        ITestItemApiClient TestItem { get; }
+
+        IUserApiClient User { get; }
+
+        IFilterApiClient Filter { get; }
+
+        #endregion
     }
 }

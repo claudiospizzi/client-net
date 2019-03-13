@@ -13,15 +13,15 @@ using ReportPortal.Client.Extention;
 
 namespace ReportPortal.Client.Api.TestItem
 {
-    public class TestItemApiClient: BaseApiClient, ITestItemApiClient
+    public class TestItemApiClient : BaseApiClient, ITestItemApiClient
     {
-        public TestItemApiClient(HttpClient httpCLient, Uri baseUri, string project) : base(httpCLient, baseUri, project)
+        public TestItemApiClient(HttpClient httpClient, string project) : base(httpClient, project)
         {
         }
 
-        public virtual async Task<PagingContent<TestItemModel>> GetTestItemsAsync(FilterOption filterOption = null)
+        public async Task<PagingContent<TestItemModel>> GetTestItemsAsync(FilterOption filterOption = null)
         {
-            var uri = BaseUri.Append($"{Project}/item");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
             if (filterOption != null)
             {
                 uri = uri.Append($"?{filterOption}");
@@ -31,79 +31,79 @@ namespace ReportPortal.Client.Api.TestItem
             return ModelSerializer.Deserialize<PagingContent<TestItemModel>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<TestItemModel> GetTestItemAsync(string id)
+        public async Task<TestItemModel> GetTestItemAsync(string id)
         {
-            var uri = BaseUri.Append($"{Project}/item/{id}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<TestItemModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<List<string>> GetUniqueTagsAsync(string launchId, string tagContains)
+        public async Task<List<string>> GetUniqueTagsAsync(string launchId, string tagContains)
         {
-            var uri = BaseUri.Append($"{Project}/item/tags?launch={launchId}&filter.cnt.tags={tagContains}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/tags?launch={launchId}&filter.cnt.tags={tagContains}");
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<List<string>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<TestItemModel> StartTestItemAsync(StartTestItemRequest model)
+        public async Task<TestItemModel> StartTestItemAsync(StartTestItemRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/item");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
             var body = ModelSerializer.Serialize<StartTestItemRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<TestItemModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<TestItemModel> StartTestItemAsync(string id, StartTestItemRequest model)
+        public async Task<TestItemModel> StartTestItemAsync(string id, StartTestItemRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/item/{id}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
             var body = ModelSerializer.Serialize<StartTestItemRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<TestItemModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<Message> FinishTestItemAsync(string id, FinishTestItemRequest model)
+        public async Task<Message> FinishTestItemAsync(string id, FinishTestItemRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/item/{id}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
             var body = ModelSerializer.Serialize<FinishTestItemRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<Message>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<Message> UpdateTestItemAsync(string id, UpdateTestItemRequest model)
+        public async Task<Message> UpdateTestItemAsync(string id, UpdateTestItemRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/item/{id}/update");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}/update");
             var body = ModelSerializer.Serialize<UpdateTestItemRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<Message>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<Message> DeleteTestItemAsync(string id)
+        public async Task<Message> DeleteTestItemAsync(string id)
         {
-            var uri = BaseUri.Append($"{Project}/item/{id}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
             var response = await HttpClient.DeleteAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<Message>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<List<Issue>> AssignTestItemIssuesAsync(AssignTestItemIssuesRequest model)
+        public async Task<List<Issue>> AssignTestItemIssuesAsync(AssignTestItemIssuesRequest model)
         {
-            var uri = BaseUri.Append($"{Project}/item");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
             var body = ModelSerializer.Serialize<AssignTestItemIssuesRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<List<Issue>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public virtual async Task<List<TestItemHistoryModel>> GetTestItemHistoryAsync(string testItemId, int depth, bool full)
+        public async Task<List<TestItemHistoryModel>> GetTestItemHistoryAsync(string testItemId, int depth, bool full)
         {
-            var uri = BaseUri.Append($"{Project}/item/history?ids={testItemId}&history_depth={depth}&is_full={full}");
+            var uri = HttpClient.BaseAddress.Append($"{Project}/item/history?ids={testItemId}&history_depth={depth}&is_full={full}");
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

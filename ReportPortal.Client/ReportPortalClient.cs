@@ -25,13 +25,13 @@ namespace ReportPortal.Client
         /// <param name="messageHandler">The HTTP handler to use for sending all requests.</param>
         public ReportPortalClient(Uri uri, string project, string password, HttpMessageHandler messageHandler)
         {
-            HttpClient = new HttpClient(messageHandler);
+            HttpClient = messageHandler == null ? new HttpClient() : new HttpClient(messageHandler);
 
             if (!uri.LocalPath.ToUpperInvariant().Contains("API/V1"))
             {
                 uri = uri.Append("api/v1");
             }
-            
+
             HttpClient.BaseAddress = uri;
 
             HttpClient.DefaultRequestHeaders.Clear();
@@ -52,9 +52,9 @@ namespace ReportPortal.Client
         /// <param name="uri">Base URI for REST service.</param>
         /// <param name="project">A project to manage.</param>
         /// <param name="password">A password for user. Can be UID given from user's profile page.</param>
-        public ReportPortalClient(Uri uri, string project, string password)
-            : this(uri, project, password, new RetryWithExponentialBackoffHttpClientHandler(3))
+        public ReportPortalClient(Uri uri, string project, string password) : this(uri, project, password, null)
         {
+
         }
 
         public HttpClient HttpClient { get; }

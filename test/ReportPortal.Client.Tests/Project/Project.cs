@@ -52,6 +52,8 @@ namespace ReportPortal.Client.Tests.Project
 
             var allPreferences = await Service.Project.GetPreferencesAsync(Username);
             Assert.True(allPreferences.FilterIds.Intersect(userFilters.Select(x => x.Id)).Any());
+            Assert.Equal(Service.ProjectName, allPreferences.ProjectRef);
+            Assert.Equal(allPreferences.UserRef, Username);
 
             userFilters.ForEach(async x => await Service.Filter.DeleteUserFilterAsync(x.Id));
         }

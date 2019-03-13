@@ -20,13 +20,11 @@ namespace ReportPortal.Client
         /// Constructor to initialize a new object of service.
         /// </summary>
         /// <param name="uri">Base URI for REST service.</param>
-        /// <param name="project">A project to manage.</param>
-        /// <param name="password">A password for user. Can be UID given from user's profile page.</param>
+        /// <param name="projectName">A project to work with.</param>
+        /// <param name="uuid">UUID given from user's profile page.</param>
         /// <param name="messageHandler">The HTTP handler to use for sending all requests.</param>
-        public ReportPortalClient(Uri uri, string project, string password, HttpMessageHandler messageHandler)
+        public ReportPortalClient(Uri uri, string projectName, string uuid, HttpMessageHandler messageHandler)
         {
-            HttpClient = messageHandler == null ? new HttpClient() : new HttpClient(messageHandler);
-
             if (!uri.LocalPath.ToUpperInvariant().Contains("API/V1"))
             {
                 uri = uri.Append("api/v1");
@@ -34,12 +32,12 @@ namespace ReportPortal.Client
 
             BaseUri = uri;
 
-            HttpClient.DefaultRequestHeaders.Clear();
-            HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + password);
-            HttpClient.DefaultRequestHeaders.Add("User-Agent", ".NET Reporter");
+            ProjectName = projectName;
 
-            ProjectName = project;
+            HttpClient = messageHandler == null ? new HttpClient() : new HttpClient(messageHandler);
+
+            HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("dotNetReporter")));
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", uuid);
 
 #if NET45
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
@@ -57,7 +55,7 @@ namespace ReportPortal.Client
 
         }
 
-        public HttpClient HttpClient { get; }
+        private HttpClient HttpClient { get; }
 
         public Uri BaseUri { get; }
 
@@ -66,7 +64,7 @@ namespace ReportPortal.Client
         /// </summary>
         public string ProjectName { get; }
 
-        #region Resources
+        #region ApiClients
 
         public ILaunchApiClient Launch => new LaunchApiClient(HttpClient, BaseUri, ProjectName);
 

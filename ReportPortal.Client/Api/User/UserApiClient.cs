@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ReportPortal.Client.Api.User.Model;
 using ReportPortal.Client.Converter;
-using ReportPortal.Client.Extention;
+using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.User
 {

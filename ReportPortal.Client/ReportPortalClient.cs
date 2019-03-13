@@ -10,7 +10,7 @@ using ReportPortal.Client.Api.Log;
 using ReportPortal.Client.Api.Project;
 using ReportPortal.Client.Api.TestItem;
 using ReportPortal.Client.Api.User;
-using ReportPortal.Client.Extention;
+using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client
 {

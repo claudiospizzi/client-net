@@ -9,7 +9,7 @@ using ReportPortal.Client.Common.Model;
 using ReportPortal.Client.Common.Model.Filtering;
 using ReportPortal.Client.Common.Model.Paging;
 using ReportPortal.Client.Converter;
-using ReportPortal.Client.Extention;
+using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.TestItem
 {

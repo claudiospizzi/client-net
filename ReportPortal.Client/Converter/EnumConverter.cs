@@ -1,5 +1,5 @@
 ﻿using System;
-using ReportPortal.Client.Extention;
+using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Converter
 {

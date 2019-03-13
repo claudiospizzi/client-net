@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ReportPortal.Client.Api.Project.Model;
 using ReportPortal.Client.Api.Project.Request;
 using ReportPortal.Client.Converter;
-using ReportPortal.Client.Extention;
+using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.Project
 {

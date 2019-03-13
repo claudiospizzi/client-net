@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace ReportPortal.Client.Extention
+namespace ReportPortal.Client.Extension
 {
-    static class EnumDescription
+    internal static class EnumDescription
     {
         public static string GetDescriptionAttribute<T>(this T source)
         {

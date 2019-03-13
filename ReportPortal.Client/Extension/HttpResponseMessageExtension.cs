@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace ReportPortal.Client.Extention
+namespace ReportPortal.Client.Extension
 {
     public static class HttpResponseMessageExtension
     {

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace ReportPortal.Client.Extention
+namespace ReportPortal.Client.Extension
 {
     public static class UriExtensions
     {

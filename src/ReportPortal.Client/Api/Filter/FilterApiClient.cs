@@ -19,14 +19,14 @@ namespace ReportPortal.Client.Api.Filter
         {
         }
 
-        public async Task<List<EntryCreated>> AddUserFilterAsync(AddUserFilterRequest model)
+        public async Task<List<FilterModel>> AddUserFilterAsync(AddUserFilterRequest model)
         {
             var uri = BaseUri.Append($"{Project}/filter");
 
             var body = ModelSerializer.Serialize<AddUserFilterRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<List<EntryCreated>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            return ModelSerializer.Deserialize<List<FilterModel>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
         public async Task<PagingContent<FilterModel>> GetUserFiltersAsync(QueryFilter queryFilter = null)

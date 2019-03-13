@@ -15,7 +15,7 @@ namespace ReportPortal.Client.Api.Filter
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<List<EntryCreated>> AddUserFilterAsync(AddUserFilterRequest model);
+        Task<List<FilterModel>> AddUserFilterAsync(AddUserFilterRequest model);
 
         /// <summary>
         /// gets all user filters

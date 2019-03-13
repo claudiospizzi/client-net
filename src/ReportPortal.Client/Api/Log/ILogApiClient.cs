@@ -12,9 +12,9 @@ namespace ReportPortal.Client.Api.Log
         /// <summary>
         /// Returns a list of log items for specified test item.
         /// </summary>
-        /// <param name="filterOption">Specified criterias for retrieving log items.</param>
+        /// <param name="queryFilter">Specified criteria for retrieving log items.</param>
         /// <returns>A list of log items.</returns>
-        Task<PagingContent<LogItem>> GetLogItemsAsync(FilterOption filterOption = null);
+        Task<PagingContent<LogItem>> GetLogItemsAsync(QueryFilter queryFilter = null);
 
         /// <summary>
         /// Returns specified log item by ID.

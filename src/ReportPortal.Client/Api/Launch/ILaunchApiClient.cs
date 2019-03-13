@@ -12,10 +12,10 @@ namespace ReportPortal.Client.Api.Launch
         /// <summary>
         /// Returns a list of launches for current project.
         /// </summary>
-        /// <param name="filterOption">Specified criterias for retrieving launches.</param>
+        /// <param name="queryFilter">Specified criteria for retrieving launches.</param>
         /// <param name="debug">Returns user debug launches or not.</param>
         /// <returns>A list of launches.</returns>
-        Task<PagingContent<LaunchModel>> GetLaunchesAsync(FilterOption filterOption = null, bool debug = false);
+        Task<PagingContent<LaunchModel>> GetLaunchesAsync(QueryFilter queryFilter = null, bool debug = false);
 
         /// <summary>
         /// Returns specified launch by ID.

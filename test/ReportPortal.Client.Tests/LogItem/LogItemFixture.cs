@@ -165,11 +165,11 @@ namespace ReportPortal.Client.Tests.LogItem
                 Status = Status.Passed
             });
 
-            var logs = (await Service.Log.GetLogItemsAsync(new FilterOption
+            var logs = (await Service.Log.GetLogItemsAsync(new QueryFilter
             {
-                FilterConditions = new List<FilterCondition>
+                FilterConditions = new List<QueryFilterCondition>
                         {
-                            new FilterCondition(FilterOperation.Equals, "item", newTestId)
+                            new QueryFilterCondition(QueryFilterOperation.Equals, "item", newTestId)
                         }
             })).Collection;
             Assert.True(logs.Any());

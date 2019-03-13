@@ -19,12 +19,12 @@ namespace ReportPortal.Client.Api.TestItem
         {
         }
 
-        public async Task<PagingContent<TestItemModel>> GetTestItemsAsync(FilterOption filterOption = null)
+        public async Task<PagingContent<TestItemModel>> GetTestItemsAsync(QueryFilter queryFilter = null)
         {
             var uri = HttpClient.BaseAddress.Append($"{Project}/item");
-            if (filterOption != null)
+            if (queryFilter != null)
             {
-                uri = uri.Append($"?{filterOption}");
+                uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

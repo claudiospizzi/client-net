@@ -29,12 +29,12 @@ namespace ReportPortal.Client.Api.Filter
             return ModelSerializer.Deserialize<List<EntryCreated>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public async Task<PagingContent<FilterModel>> GetUserFiltersAsync(FilterOption filterOption = null)
+        public async Task<PagingContent<FilterModel>> GetUserFiltersAsync(QueryFilter queryFilter = null)
         {
             var uri = HttpClient.BaseAddress.Append($"{Project}/filter/");
-            if (filterOption != null)
+            if (queryFilter != null)
             {
-                uri = uri.Append($"?{filterOption}");
+                uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

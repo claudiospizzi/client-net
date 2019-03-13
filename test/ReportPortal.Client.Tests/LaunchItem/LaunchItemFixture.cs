@@ -42,7 +42,7 @@ namespace ReportPortal.Client.Tests.LaunchItem
         [Fact]
         public async Task GetTheFirst10Launches()
         {
-            var launches = await Service.Launch.GetLaunchesAsync(new FilterOption
+            var launches = await Service.Launch.GetLaunchesAsync(new QueryFilter
             {
                 Paging = new Page(1, 10)
             });
@@ -52,10 +52,10 @@ namespace ReportPortal.Client.Tests.LaunchItem
         [Fact]
         public async Task GetLaunchesFilteredByName()
         {
-            var launches = await Service.Launch.GetLaunchesAsync(new FilterOption
+            var launches = await Service.Launch.GetLaunchesAsync(new QueryFilter
             {
                 Paging = new Page(1, 10),
-                FilterConditions = new List<FilterCondition> { new FilterCondition(FilterOperation.Contains, "name", "test") }
+                FilterConditions = new List<QueryFilterCondition> { new QueryFilterCondition(QueryFilterOperation.Contains, "name", "test") }
             });
             Assert.True(launches.Collection.Any());
             foreach (var launch in launches.Collection)
@@ -67,7 +67,7 @@ namespace ReportPortal.Client.Tests.LaunchItem
         [Fact]
         public async Task GetLaunchesSortedByAscendingDate()
         {
-            var launches = await Service.Launch.GetLaunchesAsync(new FilterOption
+            var launches = await Service.Launch.GetLaunchesAsync(new QueryFilter
             {
                 Paging = new Page(1, 10),
                 Sorting = new Sorting(new List<string> { "start_time" }, SortDirection.Ascending)
@@ -81,7 +81,7 @@ namespace ReportPortal.Client.Tests.LaunchItem
         [Fact]
         public async Task GetLaunchesSortedByDescendingDate()
         {
-            var launches = await Service.Launch.GetLaunchesAsync(new FilterOption
+            var launches = await Service.Launch.GetLaunchesAsync(new QueryFilter
             {
                 Paging = new Page(1, 10),
                 Sorting = new Sorting(new List<string> { "start_time" }, SortDirection.Descending)

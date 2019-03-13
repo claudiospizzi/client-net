@@ -17,7 +17,7 @@ namespace ReportPortal.Client.Tests.UserFilter
         {
             var filterEntity = new FilterEntity
             {
-                UserFilterCondition = FilterOperation.Contains,
+                UserFilterCondition = QueryFilterOperation.Contains,
                 FilteringField = "name",
                 Value = "test value"
             };
@@ -58,7 +58,7 @@ namespace ReportPortal.Client.Tests.UserFilter
 
             var filterEntity = new FilterEntity
             {
-                UserFilterCondition = FilterOperation.Contains,
+                UserFilterCondition = QueryFilterOperation.Contains,
                 FilteringField = "name",
                 Value = "test value"
             };
@@ -88,9 +88,9 @@ namespace ReportPortal.Client.Tests.UserFilter
 
             var userFilters = await Service.Filter.AddUserFilterAsync(new AddUserFilterRequest { FilterElements = new List<FilterElement> { filterElement } });
 
-            var userFilterContainer = await Service.Filter.GetUserFiltersAsync(new FilterOption
+            var userFilterContainer = await Service.Filter.GetUserFiltersAsync(new QueryFilter
             {
-                FilterConditions = new List<FilterCondition> { new FilterCondition(FilterOperation.Equals, "name", filterName)},
+                FilterConditions = new List<QueryFilterCondition> { new QueryFilterCondition(QueryFilterOperation.Equals, "name", filterName)},
                 Paging = new Page(1, 200)
             });
             Assert.Contains(userFilterContainer.Collection, f => f.Id.Equals(userFilters.First().Id));

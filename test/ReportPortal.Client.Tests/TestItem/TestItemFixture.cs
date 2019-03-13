@@ -84,12 +84,12 @@ namespace ReportPortal.Client.Tests.TestItem
             });
             Assert.NotNull(test2.Id);
 
-            var tests = await Service.TestItem.GetTestItemsAsync(new FilterOption
+            var tests = await Service.TestItem.GetTestItemsAsync(new QueryFilter
             {
-                FilterConditions = new List<FilterCondition>
+                FilterConditions = new List<QueryFilterCondition>
                         {
-                            new FilterCondition(FilterOperation.Equals, "launch", _fixture.LaunchId),
-                            new FilterCondition(FilterOperation.Equals, "name", testItemName)
+                            new QueryFilterCondition(QueryFilterOperation.Equals, "launch", _fixture.LaunchId),
+                            new QueryFilterCondition(QueryFilterOperation.Equals, "name", testItemName)
                         }
             });
             Assert.Equal(2, tests.Collection.Count());

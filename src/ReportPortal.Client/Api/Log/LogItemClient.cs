@@ -24,15 +24,15 @@ namespace ReportPortal.Client.Api.Log
         /// <summary>
         /// Returns a list of log items for specified test item.
         /// </summary>
-        /// <param name="filterOption">Specified criterias for retrieving log items.</param>
+        /// <param name="queryFilter">Specified criteria for retrieving log items.</param>
         /// <returns>A list of log items.</returns>
-        public async Task<PagingContent<LogItem>> GetLogItemsAsync(FilterOption filterOption = null)
+        public async Task<PagingContent<LogItem>> GetLogItemsAsync(QueryFilter queryFilter = null)
         {
             var uri = HttpClient.BaseAddress.Append($"{Project}/log");
             
-            if (filterOption != null)
+            if (queryFilter != null)
             {
-                uri = uri.Append($"?{filterOption}");
+                uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);

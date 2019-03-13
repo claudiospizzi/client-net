@@ -7,15 +7,15 @@ using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Common.Model.Filtering
 {
-    public class FilterOption
+    public class QueryFilter
     {
         public Page Paging { get; set; }
 
         public Sorting Sorting { get; set; }
 
-        public IReadOnlyList<FilterCondition> FilterConditions { get; set; }
+        public IReadOnlyList<QueryFilterCondition> FilterConditions { get; set; }
 
-        public override string ToString()
+        public string ToQueryString()
         {
             var builder = new StringBuilder();
 

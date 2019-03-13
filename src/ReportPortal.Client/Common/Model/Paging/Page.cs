@@ -5,10 +5,6 @@ namespace ReportPortal.Client.Common.Model.Paging
     [DataContract]
     public class Page
     {
-        public Page()
-        {
-        }
-
         public Page(int number, int size)
         {
             Number = number;

@@ -20,9 +20,9 @@ namespace ReportPortal.Client.Api.Filter
         /// <summary>
         /// gets all user filters
         /// </summary>
-        /// <param name="filterOption"></param>
+        /// <param name="queryFilter"></param>
         /// <returns></returns>
-        Task<PagingContent<FilterModel>> GetUserFiltersAsync(FilterOption filterOption = null);
+        Task<PagingContent<FilterModel>> GetUserFiltersAsync(QueryFilter queryFilter = null);
 
         /// <summary>
         /// deletes the specified filter by id

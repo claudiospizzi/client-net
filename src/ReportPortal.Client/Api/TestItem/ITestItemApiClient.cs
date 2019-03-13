@@ -13,9 +13,9 @@ namespace ReportPortal.Client.Api.TestItem
         /// <summary>
         /// Returns a list of test items for the launch.
         /// </summary>
-        /// <param name="filterOption">Specified criterias for retrieving test items.</param>
+        /// <param name="queryFilter">Specified criteria for retrieving test items.</param>
         /// <returns>A list of test items.</returns>
-        Task<PagingContent<TestItemModel>> GetTestItemsAsync(FilterOption filterOption = null);
+        Task<PagingContent<TestItemModel>> GetTestItemsAsync(QueryFilter queryFilter = null);
 
         /// <summary>
         /// Returns specified test item by ID.

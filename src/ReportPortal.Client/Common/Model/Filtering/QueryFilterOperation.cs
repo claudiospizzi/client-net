@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace ReportPortal.Client.Common.Model.Filtering
 {
-    public enum FilterOperation
+    public enum QueryFilterOperation
     {
         [DataMember(Name = "eq")]
         Equals,
@@ -33,22 +32,5 @@ namespace ReportPortal.Client.Common.Model.Filtering
         Size,
         [DataMember(Name = "has")]
         Has
-    }
-
-    public class FilterCondition
-    {
-        public FilterCondition(FilterOperation operation, string field, object value, params object[] values)
-        {
-            Operation = operation;
-            Field = field;
-            Values = new List<object> {value};
-            Values.AddRange(values);
-        }
-
-        public FilterOperation Operation { get; }
-
-        public string Field { get; }
-
-        public List<object> Values { get; } 
     }
 }

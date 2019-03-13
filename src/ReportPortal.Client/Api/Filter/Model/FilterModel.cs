@@ -134,9 +134,9 @@ namespace ReportPortal.Client.Api.Filter.Model
         [DataMember(Name = "condition")]
         public string ConditionStr { get; set; }
 
-        public FilterOperation UserFilterCondition
+        public QueryFilterOperation UserFilterCondition
         {
-            get => EnumConverter.ConvertTo<FilterOperation>(ConditionStr);
+            get => EnumConverter.ConvertTo<QueryFilterOperation>(ConditionStr);
             set => ConditionStr = EnumConverter.ConvertFrom(value);
         }
 

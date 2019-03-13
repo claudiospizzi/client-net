@@ -18,14 +18,14 @@ namespace ReportPortal.Client.Api.Launch
         {
         }
 
-        public async Task<PagingContent<LaunchModel>> GetLaunchesAsync(FilterOption filterOption = null, bool debug = false)
+        public async Task<PagingContent<LaunchModel>> GetLaunchesAsync(QueryFilter queryFilter = null, bool debug = false)
         {
             var uri = HttpClient.BaseAddress.Append($"{Project}/launch");
             if (debug) { uri = uri.Append("mode"); }
 
-            if (filterOption != null)
+            if (queryFilter != null)
             {
-                uri = uri.Append($"?{filterOption}");
+                uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using ReportPortal.Client.Api.Filter;
 using ReportPortal.Client.Api.Launch;
 using ReportPortal.Client.Api.Log;
@@ -14,7 +13,7 @@ namespace ReportPortal.Client
     /// </summary>
     public interface IReportPortalClient
     {
-        HttpClient HttpClient { get; }
+        Uri BaseUri { get; }
 
         string ProjectName { get; }
 

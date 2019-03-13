@@ -32,7 +32,7 @@ namespace ReportPortal.Client
                 uri = uri.Append("api/v1");
             }
 
-            HttpClient.BaseAddress = uri;
+            BaseUri = uri;
 
             HttpClient.DefaultRequestHeaders.Clear();
             HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -59,6 +59,8 @@ namespace ReportPortal.Client
 
         public HttpClient HttpClient { get; }
 
+        public Uri BaseUri { get; }
+
         /// <summary>
         /// Get or set project name to interact with.
         /// </summary>
@@ -66,17 +68,17 @@ namespace ReportPortal.Client
 
         #region Resources
 
-        public ILaunchApiClient Launch => new LaunchApiClient(HttpClient, ProjectName);
+        public ILaunchApiClient Launch => new LaunchApiClient(HttpClient, BaseUri, ProjectName);
 
-        public ILogApiClient Log => new LogApiClient(HttpClient, ProjectName);
+        public ILogApiClient Log => new LogApiClient(HttpClient, BaseUri, ProjectName);
 
-        public IProjectApiClient Project => new ProjectApiClient(HttpClient, ProjectName);
+        public IProjectApiClient Project => new ProjectApiClient(HttpClient, BaseUri, ProjectName);
 
-        public ITestItemApiClient TestItem => new TestItemApiClient(HttpClient, ProjectName);
+        public ITestItemApiClient TestItem => new TestItemApiClient(HttpClient, BaseUri, ProjectName);
 
-        public IUserApiClient User => new UserApiClient(HttpClient, ProjectName);
+        public IUserApiClient User => new UserApiClient(HttpClient, BaseUri, ProjectName);
 
-        public IFilterApiClient Filter => new FilterApiClient(HttpClient, ProjectName);
+        public IFilterApiClient Filter => new FilterApiClient(HttpClient, BaseUri, ProjectName);
 
         #endregion
     }

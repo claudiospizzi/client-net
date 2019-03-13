@@ -15,13 +15,13 @@ namespace ReportPortal.Client.Api.TestItem
 {
     public class TestItemApiClient : BaseApiClient, ITestItemApiClient
     {
-        public TestItemApiClient(HttpClient httpClient, string project) : base(httpClient, project)
+        public TestItemApiClient(HttpClient httpClient, Uri baseUri, string project) : base(httpClient, baseUri, project)
         {
         }
 
         public async Task<PagingContent<TestItemModel>> GetTestItemsAsync(QueryFilter queryFilter = null)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
+            var uri = BaseUri.Append($"{Project}/item");
             if (queryFilter != null)
             {
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
@@ -33,7 +33,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<TestItemModel> GetTestItemAsync(string id)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
+            var uri = BaseUri.Append($"{Project}/item/{id}");
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<TestItemModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
@@ -41,7 +41,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<List<string>> GetUniqueTagsAsync(string launchId, string tagContains)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/tags?launch={launchId}&filter.cnt.tags={tagContains}");
+            var uri = BaseUri.Append($"{Project}/item/tags?launch={launchId}&filter.cnt.tags={tagContains}");
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -50,7 +50,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<TestItemModel> StartTestItemAsync(StartTestItemRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
+            var uri = BaseUri.Append($"{Project}/item");
             var body = ModelSerializer.Serialize<StartTestItemRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -59,7 +59,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<TestItemModel> StartTestItemAsync(string id, StartTestItemRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
+            var uri = BaseUri.Append($"{Project}/item/{id}");
             var body = ModelSerializer.Serialize<StartTestItemRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -68,7 +68,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<Message> FinishTestItemAsync(string id, FinishTestItemRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
+            var uri = BaseUri.Append($"{Project}/item/{id}");
             var body = ModelSerializer.Serialize<FinishTestItemRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -77,7 +77,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<Message> UpdateTestItemAsync(string id, UpdateTestItemRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}/update");
+            var uri = BaseUri.Append($"{Project}/item/{id}/update");
             var body = ModelSerializer.Serialize<UpdateTestItemRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -86,7 +86,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<Message> DeleteTestItemAsync(string id)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/{id}");
+            var uri = BaseUri.Append($"{Project}/item/{id}");
             var response = await HttpClient.DeleteAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
             return ModelSerializer.Deserialize<Message>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
@@ -94,7 +94,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<List<Issue>> AssignTestItemIssuesAsync(AssignTestItemIssuesRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item");
+            var uri = BaseUri.Append($"{Project}/item");
             var body = ModelSerializer.Serialize<AssignTestItemIssuesRequest>(model);
             var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
@@ -103,7 +103,7 @@ namespace ReportPortal.Client.Api.TestItem
 
         public async Task<List<TestItemHistoryModel>> GetTestItemHistoryAsync(string testItemId, int depth, bool full)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/item/history?ids={testItemId}&history_depth={depth}&is_full={full}");
+            var uri = BaseUri.Append($"{Project}/item/history?ids={testItemId}&history_depth={depth}&is_full={full}");
 
             var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

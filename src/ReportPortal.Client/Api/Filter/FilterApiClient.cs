@@ -13,15 +13,15 @@ using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.Filter
 {
-    public class FilterApiClient: BaseApiClient, IFilterApiClient
+    public class FilterApiClient : BaseApiClient, IFilterApiClient
     {
-        public FilterApiClient(HttpClient httpClient, string project) : base(httpClient, project)
+        public FilterApiClient(HttpClient httpClient, Uri baseUri, string project) : base(httpClient, baseUri, project)
         {
         }
 
         public async Task<List<EntryCreated>> AddUserFilterAsync(AddUserFilterRequest model)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/filter");
+            var uri = BaseUri.Append($"{Project}/filter");
 
             var body = ModelSerializer.Serialize<AddUserFilterRequest>(model);
             var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
@@ -31,7 +31,7 @@ namespace ReportPortal.Client.Api.Filter
 
         public async Task<PagingContent<FilterModel>> GetUserFiltersAsync(QueryFilter queryFilter = null)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/filter/");
+            var uri = BaseUri.Append($"{Project}/filter/");
             if (queryFilter != null)
             {
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
@@ -43,7 +43,7 @@ namespace ReportPortal.Client.Api.Filter
 
         public async Task<Message> DeleteUserFilterAsync(string filterId)
         {
-            var uri = HttpClient.BaseAddress.Append($"{Project}/filter/{filterId}");
+            var uri = BaseUri.Append($"{Project}/filter/{filterId}");
 
             var response = await HttpClient.DeleteAsync(uri).ConfigureAwait(false);
             response.VerifySuccessStatusCode();

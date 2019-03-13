@@ -14,7 +14,7 @@ namespace ReportPortal.Client.Tests.ServiceFixture
         public void ShouldAutomaticallyAppendApiPostfix(string url, string expectedUrl)
         {
             var service = new ReportPortalClient(new Uri(url), "", "");
-            Assert.Equal(expectedUrl, service.HttpClient.BaseAddress.ToString());
+            Assert.Equal(expectedUrl, service.BaseUri.ToString());
         }
     }
 }

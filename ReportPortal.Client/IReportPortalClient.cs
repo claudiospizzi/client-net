@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Net.Http;
+using ReportPortal.Client.Api.Filter;
+using ReportPortal.Client.Api.Launch;
+using ReportPortal.Client.Api.Log;
+using ReportPortal.Client.Api.Project;
+using ReportPortal.Client.Api.TestItem;
+using ReportPortal.Client.Api.User;
 
 namespace ReportPortal.Client
 {

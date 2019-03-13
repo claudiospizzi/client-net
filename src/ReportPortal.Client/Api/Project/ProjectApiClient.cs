@@ -25,7 +25,7 @@ namespace ReportPortal.Client.Api.Project
             return ModelSerializer.Deserialize<UpdatePreferencesResponse>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
-        public async Task<Preference> GetAllPreferences(string userName)
+        public async Task<Preference> GetPreferencesAsync(string userName)
         {
             var uri = HttpClient.BaseAddress.Append($"project/{Project}/preference/{userName}");
 

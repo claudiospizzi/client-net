@@ -7,7 +7,7 @@ namespace ReportPortal.Client.Api.Project
     public interface IProjectApiClient
     {
         /// <summary>
-        /// updates the project preference for user
+        /// Updates the project preference for user
         /// </summary>
         /// <param name="model"></param>
         /// <param name="userName"></param>
@@ -15,10 +15,10 @@ namespace ReportPortal.Client.Api.Project
         Task<UpdatePreferencesResponse> UpdatePreferencesAsync(UpdatePreferenceRequest model, string userName);
 
         /// <summary>
-        /// gets all user preferences
+        /// Gets user's preferences.
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        Task<Preference> GetAllPreferences(string userName);
+        Task<Preference> GetPreferencesAsync(string userName);
     }
 }

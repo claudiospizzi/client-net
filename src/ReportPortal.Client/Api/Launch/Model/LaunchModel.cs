@@ -26,7 +26,6 @@ namespace ReportPortal.Client.Api.Launch.Model
         public LaunchMode Mode 
         {
             get => EnumConverter.ConvertTo<LaunchMode>(ModeString);
-            set => ModeString = EnumConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "start_time")]
@@ -35,7 +34,6 @@ namespace ReportPortal.Client.Api.Launch.Model
         public DateTime StartTime
         {
             get => DateTimeConverter.ConvertTo(StartTimeString);
-            set => StartTimeString = DateTimeConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "end_time")]
@@ -44,7 +42,6 @@ namespace ReportPortal.Client.Api.Launch.Model
         public DateTime? EndTime
         {
             get => EndTimeString == null ? (DateTime?)null : DateTimeConverter.ConvertTo(EndTimeString);
-            set => EndTimeString = DateTimeConverter.ConvertFrom(value.GetValueOrDefault());
         }
 
         [DataMember(Name = "hasRetries")]

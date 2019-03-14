@@ -19,6 +19,6 @@ namespace ReportPortal.Client.Api.Project
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        Task<Preference> GetPreferencesAsync(string userName);
+        Task<PreferenceModel> GetPreferencesAsync(string userName);
     }
 }

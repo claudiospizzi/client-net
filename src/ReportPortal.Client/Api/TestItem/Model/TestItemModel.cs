@@ -26,7 +26,6 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public DateTime StartTime
         {
             get => DateTimeConverter.ConvertTo(StartTimeString);
-            set => StartTimeString = DateTimeConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "end_time")]
@@ -35,14 +34,10 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public DateTime? EndTime
         {
             get => EndTimeString == null? (DateTime?)null: DateTimeConverter.ConvertTo(EndTimeString);
-            set => EndTimeString = DateTimeConverter.ConvertFrom(value.GetValueOrDefault());
         }
 
         [DataMember(Name = "status")]
         public string StatusString { get; set; }
-
-        [DataMember(Name = "retry")]
-        public bool IsRetry { get; set; }
 
         public Status Status 
         { 
@@ -56,7 +51,6 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public TestItemType Type 
         { 
             get => EnumConverter.ConvertTo<TestItemType>(TypeString);
-            set => TypeString = EnumConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "tags")]
@@ -106,7 +100,6 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public DateTime SubmitDate
         {
             get => DateTimeConverter.ConvertTo(SubmitDateString);
-            set => SubmitDateString = DateTimeConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "submitter")]

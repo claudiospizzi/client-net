@@ -26,7 +26,7 @@ namespace ReportPortal.Client.Api.Log
         /// </summary>
         /// <param name="queryFilter">Specified criteria for retrieving log items.</param>
         /// <returns>A list of log items.</returns>
-        public async Task<PagingContent<LogItem>> GetLogItemsAsync(QueryFilter queryFilter = null)
+        public async Task<PagingContent<LogItemModel>> GetLogItemsAsync(QueryFilter queryFilter = null)
         {
             var uri = BaseUri.Append($"{Project}/log");
 
@@ -35,7 +35,7 @@ namespace ReportPortal.Client.Api.Log
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            return await GetAsync<PagingContent<LogItem>>(uri).ConfigureAwait(false);
+            return await GetAsync<PagingContent<LogItemModel>>(uri).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -43,11 +43,11 @@ namespace ReportPortal.Client.Api.Log
         /// </summary>
         /// <param name="id">ID of the log item to retrieve.</param>
         /// <returns>A representation of log item/</returns>
-        public async Task<LogItem> GetLogItemAsync(string id)
+        public async Task<LogItemModel> GetLogItemAsync(string id)
         {
             var uri = BaseUri.Append($"{Project}/log/{id}");
 
-            return await GetAsync<LogItem>(uri).ConfigureAwait(false);
+            return await GetAsync<LogItemModel>(uri).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -68,13 +68,13 @@ namespace ReportPortal.Client.Api.Log
         /// </summary>
         /// <param name="model">Information about representation of log item.</param>
         /// <returns>Representation of just created log item.</returns>
-        public async Task<LogItem> AddLogItemAsync(AddLogItemRequest model)
+        public async Task<LogItemModel> AddLogItemAsync(AddLogItemRequest model)
         {
             var uri = BaseUri.Append($"{Project}/log");
 
             if (model.Attach == null)
             {
-                return await SendAsync<LogItem, AddLogItemRequest>(HttpMethod.Post, uri, model).ConfigureAwait(false);
+                return await SendAsync<LogItemModel, AddLogItemRequest>(HttpMethod.Post, uri, model).ConfigureAwait(false);
             }
             else
             {

@@ -59,8 +59,6 @@ namespace ReportPortal.Client.Api.Filter.Model
         public FilterType UserFilterType
         {
             get => EnumConverter.ConvertTo<FilterType>(TypeStr);
-            set => TypeStr = EnumConverter.ConvertFrom(value);
-
         }
 
         /// <summary>

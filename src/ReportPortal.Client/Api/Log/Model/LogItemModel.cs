@@ -7,7 +7,7 @@ using ReportPortal.Client.Converter;
 namespace ReportPortal.Client.Api.Log.Model
 {
     [DataContract]
-    public class LogItem
+    public class LogItemModel
     {
         [DataMember(Name = "id")]
         public string Id { get; set; }
@@ -18,7 +18,6 @@ namespace ReportPortal.Client.Api.Log.Model
         public DateTime Time
         {
             get => DateTimeConverter.ConvertTo(TimeString);
-            set => TimeString = DateTimeConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "message")]
@@ -30,7 +29,6 @@ namespace ReportPortal.Client.Api.Log.Model
         public LogLevel Level
         {
             get => EnumConverter.ConvertTo<LogLevel>(LevelString);
-            set => LevelString = EnumConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "binary_content")]
@@ -78,6 +76,6 @@ namespace ReportPortal.Client.Api.Log.Model
     public class Responses
     {
         [DataMember(Name = "responses")]
-        public List<LogItem> LogItems { get; set; }
+        public List<LogItemModel> LogItems { get; set; }
     }
 }

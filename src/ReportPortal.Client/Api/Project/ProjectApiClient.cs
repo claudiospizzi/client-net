@@ -20,11 +20,11 @@ namespace ReportPortal.Client.Api.Project
             return await SendAsync<UpdatePreferencesResponse, UpdatePreferenceRequest>(HttpMethod.Put, uri, model).ConfigureAwait(false);
         }
 
-        public async Task<Preference> GetPreferencesAsync(string userName)
+        public async Task<PreferenceModel> GetPreferencesAsync(string userName)
         {
             var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
 
-            return await GetAsync<Preference>(uri).ConfigureAwait(false);
+            return await GetAsync<PreferenceModel>(uri).ConfigureAwait(false);
         }
     }
 }

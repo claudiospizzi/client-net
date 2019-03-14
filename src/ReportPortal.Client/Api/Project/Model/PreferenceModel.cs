@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ReportPortal.Client.Api.Project.Model
 {
     [DataContract]
-    public class Preference
+    public class PreferenceModel
     {
         [DataMember(Name = "userRef")]
         public string UserRef { get; set; }

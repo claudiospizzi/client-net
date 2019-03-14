@@ -7,7 +7,7 @@ using ReportPortal.Client.Api.TestItem.Request;
 using ReportPortal.Client.Common.Model.Filtering;
 using Xunit;
 
-namespace ReportPortal.Client.Tests.TestItem
+namespace ReportPortal.Client.Tests.Api.TestItem
 {
     public class TestItemFixture : BaseFixture, IClassFixture<LaunchFixtureBase>
     {

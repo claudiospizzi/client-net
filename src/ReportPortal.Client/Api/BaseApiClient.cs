@@ -22,18 +22,18 @@ namespace ReportPortal.Client.Api
             Project = project;
         }
 
-        protected async Task<TResponseModel> SendAsync<TResponseModel, TRequestModel>(HttpMethod httpMethod, Uri requestUri, TRequestModel requestBody)
+        protected async Task<TResponseModel> SendAsync<TResponseModel, TRequestModel>(HttpMethod httpMethod, Uri requestUri, TRequestModel requestModel)
         {
-            var requestMessage = new HttpRequestMessage(httpMethod, requestUri);
+            var httpRequestMessage = new HttpRequestMessage(httpMethod, requestUri);
 
-            if (requestBody != null)
+            if (requestModel != null)
             {
-                var requestContent = ModelSerializer.Serialize<TRequestModel>(requestBody);
+                var requestContent = ModelSerializer.Serialize<TRequestModel>(requestModel);
 
-                requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
+                httpRequestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
             }
 
-            var response = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            var response = await HttpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
             response.VerifySuccessStatusCode();
 
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

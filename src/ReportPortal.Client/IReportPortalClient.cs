@@ -17,7 +17,7 @@ namespace ReportPortal.Client
 
         string ProjectName { get; }
 
-        #region Resources
+        #region Api Clients
 
         ILaunchApiClient Launch { get; }
 

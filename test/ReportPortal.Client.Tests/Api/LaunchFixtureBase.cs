@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ReportPortal.Client.Api.Launch.Request;
 
-namespace ReportPortal.Client.Tests
+namespace ReportPortal.Client.Tests.Api
 {
     public class LaunchFixtureBase: BaseFixture, IDisposable
     {

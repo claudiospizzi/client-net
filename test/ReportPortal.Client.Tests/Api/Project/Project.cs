@@ -8,7 +8,7 @@ using ReportPortal.Client.Api.Project.Request;
 using ReportPortal.Client.Common.Model.Filtering;
 using Xunit;
 
-namespace ReportPortal.Client.Tests.Project
+namespace ReportPortal.Client.Tests.Api.Project
 {
     public class ProjectFixture : BaseFixture
     {

@@ -11,7 +11,7 @@ using ReportPortal.Client.Common.Model.Filtering;
 using ReportPortal.Client.Common.Model.Paging;
 using Xunit;
 
-namespace ReportPortal.Client.Tests.LaunchItem
+namespace ReportPortal.Client.Tests.Api.LaunchItem
 {
     public class LaunchItemFixture : BaseFixture
     {

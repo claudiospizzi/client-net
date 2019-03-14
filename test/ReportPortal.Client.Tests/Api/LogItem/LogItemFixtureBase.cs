@@ -4,7 +4,7 @@ using ReportPortal.Client.Api.Launch.Request;
 using ReportPortal.Client.Api.TestItem.Model;
 using ReportPortal.Client.Api.TestItem.Request;
 
-namespace ReportPortal.Client.Tests.LogItem
+namespace ReportPortal.Client.Tests.Api.LogItem
 {
     public class LogItemFixtureBase : BaseFixture, IDisposable
     {

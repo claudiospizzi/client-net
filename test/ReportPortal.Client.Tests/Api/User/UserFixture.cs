@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xunit;
 
-namespace ReportPortal.Client.Tests.User
+namespace ReportPortal.Client.Tests.Api.User
 {
     public class UserFixture : BaseFixture
     {

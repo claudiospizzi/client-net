@@ -5,7 +5,7 @@ using ReportPortal.Client.Api.TestItem.Model;
 using ReportPortal.Client.Api.TestItem.Request;
 using Xunit;
 
-namespace ReportPortal.Client.Tests.TestItem
+namespace ReportPortal.Client.Tests.Api.TestItem
 {
     public class DeleteTestItemFixture : BaseFixture
     {

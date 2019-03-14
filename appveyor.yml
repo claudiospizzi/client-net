@@ -7,6 +7,10 @@ install:
 configuration:
   - Release
 
+dotnet_csproj:
+  patch: true
+  version: '$(GitVersion_SemVer)'
+
 build_script:
   - dotnet build
 

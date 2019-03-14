@@ -35,9 +35,7 @@ namespace ReportPortal.Client.Api.Log
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<PagingContent<LogItem>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            return await SendAsync<PagingContent<LogItem>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -48,9 +46,8 @@ namespace ReportPortal.Client.Api.Log
         public async Task<LogItem> GetLogItemAsync(string id)
         {
             var uri = BaseUri.Append($"{Project}/log/{id}");
-            var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<LogItem>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+
+            return await SendAsync<LogItem, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -77,10 +74,7 @@ namespace ReportPortal.Client.Api.Log
 
             if (model.Attach == null)
             {
-                var body = ModelSerializer.Serialize<AddLogItemRequest>(model);
-                var response = await HttpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
-                response.VerifySuccessStatusCode();
-                return ModelSerializer.Deserialize<LogItem>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+                return await SendAsync<LogItem, AddLogItemRequest>(HttpMethod.Post, uri, model).ConfigureAwait(false);
             }
             else
             {
@@ -109,9 +103,8 @@ namespace ReportPortal.Client.Api.Log
         public async Task<Message> DeleteLogItemAsync(string id)
         {
             var uri = BaseUri.Append($"{Project}/log/{id}");
-            var response = await HttpClient.DeleteAsync(uri).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<Message>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+
+            return await SendAsync<Message, object>(HttpMethod.Delete, uri, null).ConfigureAwait(false);
         }
     }
 }

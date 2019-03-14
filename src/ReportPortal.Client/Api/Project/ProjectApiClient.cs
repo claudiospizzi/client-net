@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using ReportPortal.Client.Api.Project.Model;
 using ReportPortal.Client.Api.Project.Request;
-using ReportPortal.Client.Converter;
 using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.Project
@@ -18,20 +16,15 @@ namespace ReportPortal.Client.Api.Project
         public async Task<UpdatePreferencesResponse> UpdatePreferencesAsync(UpdatePreferenceRequest model, string userName)
         {
             var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
-            var body = ModelSerializer.Serialize<UpdatePreferenceRequest>(model);
 
-            var response = await HttpClient.PutAsync(uri, new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<UpdatePreferencesResponse>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            return await SendAsync<UpdatePreferencesResponse, UpdatePreferenceRequest>(HttpMethod.Put, uri, model).ConfigureAwait(false);
         }
 
         public async Task<Preference> GetPreferencesAsync(string userName)
         {
             var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
 
-            var response = await HttpClient.GetAsync(uri).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
-            return ModelSerializer.Deserialize<Preference>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            return await SendAsync<Preference, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
         }
     }
 }

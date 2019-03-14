@@ -66,17 +66,89 @@ namespace ReportPortal.Client
 
         #region ApiClients
 
-        public ILaunchApiClient Launch => new LaunchApiClient(HttpClient, BaseUri, ProjectName);
+        private ILaunchApiClient _launch;
+        public ILaunchApiClient Launch
+        {
+            get
+            {
+                if (_launch == null)
+                {
+                    _launch = new LaunchApiClient(HttpClient, BaseUri, ProjectName);
+                }
 
-        public ILogApiClient Log => new LogApiClient(HttpClient, BaseUri, ProjectName);
+                return _launch;
+            }
+        }
 
-        public IProjectApiClient Project => new ProjectApiClient(HttpClient, BaseUri, ProjectName);
+        private ILogApiClient _log;
+        public ILogApiClient Log
+        {
+            get
+            {
+                if (_log == null)
+                {
+                    _log = new LogApiClient(HttpClient, BaseUri, ProjectName);
+                }
 
-        public ITestItemApiClient TestItem => new TestItemApiClient(HttpClient, BaseUri, ProjectName);
+                return _log;
+            }
+        }
 
-        public IUserApiClient User => new UserApiClient(HttpClient, BaseUri, ProjectName);
+        private IProjectApiClient _project;
+        public IProjectApiClient Project
+        {
+            get
+            {
+                if (_project == null)
+                {
+                    _project = new ProjectApiClient(HttpClient, BaseUri, ProjectName);
+                }
 
-        public IFilterApiClient Filter => new FilterApiClient(HttpClient, BaseUri, ProjectName);
+                return _project;
+            }
+        }
+
+        private ITestItemApiClient _testItem;
+        public ITestItemApiClient TestItem
+        {
+            get
+            {
+                if (_testItem == null)
+                {
+                    _testItem = new TestItemApiClient(HttpClient, BaseUri, ProjectName);
+                }
+
+                return _testItem;
+            }
+        }
+
+        private IUserApiClient _user;
+        public IUserApiClient User
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    _user = new UserApiClient(HttpClient, BaseUri, ProjectName);
+                }
+
+                return _user;
+            }
+        }
+
+        private IFilterApiClient _filter;
+        public IFilterApiClient Filter
+        {
+            get
+            {
+                if (_filter == null)
+                {
+                    _filter = new FilterApiClient(HttpClient, BaseUri, ProjectName);
+                }
+
+                return _filter;
+            }
+        }
 
         #endregion
     }

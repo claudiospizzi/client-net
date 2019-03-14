@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ReportPortal.Client.Extension
 {
-    public static class UriExtensions
+    internal static class UriExtensions
     {
         public static Uri Append(this Uri uri, params string[] paths)
         {

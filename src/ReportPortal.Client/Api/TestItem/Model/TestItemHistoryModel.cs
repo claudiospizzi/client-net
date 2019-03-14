@@ -20,7 +20,6 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public DateTime StartTime
         {
             get => DateTimeConverter.ConvertTo(StartTimeString);
-            set => StartTimeString = DateTimeConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "launchStatus")]
@@ -29,7 +28,6 @@ namespace ReportPortal.Client.Api.TestItem.Model
         public Status LaunchStatus
         {
             get => EnumConverter.ConvertTo<Status>(LaunchStatusString);
-            set => LaunchStatusString = EnumConverter.ConvertFrom(value);
         }
 
         [DataMember(Name = "resources")]

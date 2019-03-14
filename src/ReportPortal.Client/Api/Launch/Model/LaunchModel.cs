@@ -23,7 +23,7 @@ namespace ReportPortal.Client.Api.Launch.Model
         [DataMember(Name = "mode")]
         public string ModeString { get; set; }
 
-        public LaunchMode Mode 
+        public LaunchMode Mode
         {
             get => EnumConverter.ConvertTo<LaunchMode>(ModeString);
         }

@@ -95,10 +95,13 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
         [Fact]
         public async Task StartFinishDeleteLaunch()
         {
+            var startTime = DateTime.UtcNow;
+            var finishTime = DateTime.UtcNow.AddHours(1);
+
             var startLaunchRequest = new StartLaunchRequest
             {
                 Name = "StartFinishDeleteLaunch",
-                StartTime = DateTime.UtcNow
+                StartTime = startTime
             };
 
             var launch = await Service.Launch.StartLaunchAsync(startLaunchRequest);
@@ -106,7 +109,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
 
             var finishLaunchRequest = new FinishLaunchRequest
             {
-                EndTime = DateTime.UtcNow.AddHours(1)
+                EndTime = finishTime
             };
 
             var message = await Service.Launch.FinishLaunchAsync(launch.Id, finishLaunchRequest);
@@ -162,13 +165,18 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
                 Description = "Desc",
                 StartTime = now,
                 Tags = new List<string> { "tag1", "tag2", "tag3" },
+                Mode = LaunchMode.Debug
             });
+
             Assert.NotNull(launch.Id);
+
             var getLaunch = await Service.Launch.GetLaunchAsync(launch.Id);
             Assert.Equal("StartFinishDeleteFullLaunch", getLaunch.Name);
             Assert.Equal("Desc", getLaunch.Description);
             Assert.Equal(now.ToString(), getLaunch.StartTime.ToString());
             Assert.Equal(new List<string> { "tag1", "tag2", "tag3" }, getLaunch.Tags);
+            Assert.Equal(LaunchMode.Debug, getLaunch.Mode);
+
             var message = await Service.Launch.FinishLaunchAsync(launch.Id, new FinishLaunchRequest
             {
                 EndTime = DateTime.UtcNow

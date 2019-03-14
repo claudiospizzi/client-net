@@ -12,9 +12,6 @@ namespace ReportPortal.Client.Api.Project.Model
         [DataMember(Name = "projectRef")]
         public string ProjectRef { get; set; }
 
-        [DataMember(Name = "active")]
-        public string Active { get; set; }
-
         /// <summary>
         /// list of filters in a preference
         /// </summary>

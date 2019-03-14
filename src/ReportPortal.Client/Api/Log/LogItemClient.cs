@@ -35,7 +35,7 @@ namespace ReportPortal.Client.Api.Log
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            return await SendAsync<PagingContent<LogItem>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<PagingContent<LogItem>>(uri).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ReportPortal.Client.Api.Log
         {
             var uri = BaseUri.Append($"{Project}/log/{id}");
 
-            return await SendAsync<LogItem, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<LogItem>(uri).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace ReportPortal.Client.Api.Log
         {
             var uri = BaseUri.Append($"{Project}/log/{id}");
 
-            return await SendAsync<Message, object>(HttpMethod.Delete, uri, null).ConfigureAwait(false);
+            return await DeleteAsync<Message>(uri).ConfigureAwait(false);
         }
     }
 }

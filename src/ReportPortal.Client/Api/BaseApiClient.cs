@@ -22,13 +22,13 @@ namespace ReportPortal.Client.Api
             Project = project;
         }
 
-        protected async Task<TResponseBody> SendAsync<TResponseBody, TRequestBody>(HttpMethod httpMethod, Uri requestUri, TRequestBody requestBody)
+        protected async Task<TResponseModel> SendAsync<TResponseModel, TRequestModel>(HttpMethod httpMethod, Uri requestUri, TRequestModel requestBody)
         {
             var requestMessage = new HttpRequestMessage(httpMethod, requestUri);
 
             if (requestBody != null)
             {
-                var requestContent = ModelSerializer.Serialize<TRequestBody>(requestBody);
+                var requestContent = ModelSerializer.Serialize<TRequestModel>(requestBody);
 
                 requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
             }
@@ -38,7 +38,17 @@ namespace ReportPortal.Client.Api
 
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            return ModelSerializer.Deserialize<TResponseBody>(responseBody);
+            return ModelSerializer.Deserialize<TResponseModel>(responseBody);
+        }
+
+        protected async Task<TResponseModel> GetAsync<TResponseModel>(Uri requestUri)
+        {
+            return await SendAsync<TResponseModel, object>(HttpMethod.Get, requestUri, null).ConfigureAwait(false);
+        }
+
+        protected async Task<TResponseModel> DeleteAsync<TResponseModel>(Uri requestUri)
+        {
+            return await SendAsync<TResponseModel, object>(HttpMethod.Delete, requestUri, null).ConfigureAwait(false);
         }
     }
 }

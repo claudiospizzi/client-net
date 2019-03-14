@@ -16,7 +16,7 @@ namespace ReportPortal.Client.Api.User
         {
             var uri = BaseUri.Append("/user");
 
-            return await SendAsync<UserModel, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<UserModel>(uri).ConfigureAwait(false);
         }
     }
 }

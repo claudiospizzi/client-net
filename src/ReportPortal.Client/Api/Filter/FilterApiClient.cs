@@ -32,14 +32,14 @@ namespace ReportPortal.Client.Api.Filter
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            return await SendAsync<PagingContent<FilterModel>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<PagingContent<FilterModel>>(uri).ConfigureAwait(false);
         }
 
         public async Task<Message> DeleteUserFilterAsync(string filterId)
         {
             var uri = BaseUri.Append($"{Project}/filter/{filterId}");
 
-            return await SendAsync<Message, object>(HttpMethod.Delete, uri, null).ConfigureAwait(false);
+            return await DeleteAsync<Message>(uri).ConfigureAwait(false);
         }
     }
 }

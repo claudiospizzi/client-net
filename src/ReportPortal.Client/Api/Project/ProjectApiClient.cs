@@ -24,7 +24,7 @@ namespace ReportPortal.Client.Api.Project
         {
             var uri = BaseUri.Append($"project/{Project}/preference/{userName}");
 
-            return await SendAsync<Preference, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<Preference>(uri).ConfigureAwait(false);
         }
     }
 }

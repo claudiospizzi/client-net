@@ -26,14 +26,14 @@ namespace ReportPortal.Client.Api.Launch
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            return await SendAsync<PagingContent<LaunchModel>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<PagingContent<LaunchModel>>(uri).ConfigureAwait(false);
         }
 
         public async Task<LaunchModel> GetLaunchAsync(string id)
         {
             var uri = BaseUri.Append($"{Project}/launch/{id}");
 
-            return await SendAsync<LaunchModel, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<LaunchModel>(uri).ConfigureAwait(false);
         }
 
         public async Task<LaunchModel> StartLaunchAsync(StartLaunchRequest startLaunchRequest)
@@ -55,7 +55,7 @@ namespace ReportPortal.Client.Api.Launch
         {
             var uri = BaseUri.Append($"{Project}/launch/{id}");
 
-            return await SendAsync<Message, object>(HttpMethod.Delete, uri, null).ConfigureAwait(false);
+            return await DeleteAsync<Message>(uri).ConfigureAwait(false);
         }
 
         public async Task<LaunchModel> MergeLaunchesAsync(MergeLaunchesRequest mergeLaunchesRequest)

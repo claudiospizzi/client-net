@@ -25,21 +25,21 @@ namespace ReportPortal.Client.Api.TestItem
                 uri = uri.Append($"?{queryFilter.ToQueryString()}");
             }
 
-            return await SendAsync<PagingContent<TestItemModel>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<PagingContent<TestItemModel>>(uri).ConfigureAwait(false);
         }
 
         public async Task<TestItemModel> GetTestItemAsync(string id)
         {
             var uri = BaseUri.Append($"{Project}/item/{id}");
 
-            return await SendAsync<TestItemModel, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<TestItemModel>(uri).ConfigureAwait(false);
         }
 
         public async Task<List<string>> GetUniqueTagsAsync(string launchId, string tagContains)
         {
             var uri = BaseUri.Append($"{Project}/item/tags?launch={launchId}&filter.cnt.tags={tagContains}");
 
-            return await SendAsync<List<string>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<List<string>>(uri).ConfigureAwait(false);
         }
 
         public async Task<TestItemModel> StartTestItemAsync(StartTestItemRequest model)
@@ -74,7 +74,7 @@ namespace ReportPortal.Client.Api.TestItem
         {
             var uri = BaseUri.Append($"{Project}/item/{id}");
 
-            return await SendAsync<Message, object>(HttpMethod.Delete, uri, null).ConfigureAwait(false);
+            return await DeleteAsync<Message>(uri).ConfigureAwait(false);
         }
 
         public async Task<List<Issue>> AssignTestItemIssuesAsync(AssignTestItemIssuesRequest model)
@@ -88,7 +88,7 @@ namespace ReportPortal.Client.Api.TestItem
         {
             var uri = BaseUri.Append($"{Project}/item/history?ids={testItemId}&history_depth={depth}&is_full={full}");
 
-            return await SendAsync<List<TestItemHistoryModel>, object>(HttpMethod.Get, uri, null).ConfigureAwait(false);
+            return await GetAsync<List<TestItemHistoryModel>>(uri).ConfigureAwait(false);
         }
     }
 }

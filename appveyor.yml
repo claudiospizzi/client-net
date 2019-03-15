@@ -1,7 +1,7 @@
 ﻿image: Visual Studio 2017
 
 install:
-  - gitversion /l console /output buildserver /updateassemblyinfo /ensureassemblyinfo
+  - gitversion /l console /output buildserver
   - dotnet tool install -g codecov.tool
 
 configuration:

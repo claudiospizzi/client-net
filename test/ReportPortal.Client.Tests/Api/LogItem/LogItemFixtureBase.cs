@@ -1,8 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Launch.Request;
-using ReportPortal.Client.Api.TestItem.Model;
-using ReportPortal.Client.Api.TestItem.Request;
+using ReportPortal.Client.Api.Launch.DataContract;
 
 namespace ReportPortal.Client.Tests.Api.LogItem
 {

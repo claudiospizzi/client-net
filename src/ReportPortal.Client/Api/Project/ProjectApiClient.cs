@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Project.Model;
-using ReportPortal.Client.Api.Project.Request;
+using ReportPortal.Client.Api.Project.DataContract;
 using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.Project

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Log.Model;
-using ReportPortal.Client.Api.Log.Request;
-using ReportPortal.Client.Api.TestItem.Model;
-using ReportPortal.Client.Api.TestItem.Request;
+using ReportPortal.Client.Api.Log.DataContract;
+using ReportPortal.Client.Api.TestItem.DataContract;
 using ReportPortal.Client.Common.Model.Filtering;
 using Xunit;
 

@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ReportPortal.Client.Api.Project.Model;
-using ReportPortal.Client.Api.Project.Request;
+using ReportPortal.Client.Api.Project.DataContract;
 
 namespace ReportPortal.Client.Api.Project
 {

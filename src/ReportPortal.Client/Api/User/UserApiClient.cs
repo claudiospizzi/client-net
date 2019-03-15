@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.User.Model;
+using ReportPortal.Client.Api.User.DataContract;
 using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.User

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.TestItem.Model;
-using ReportPortal.Client.Api.TestItem.Request;
+using ReportPortal.Client.Api.TestItem.DataContract;
 using ReportPortal.Client.Common.Model.Filtering;
 using Xunit;
 

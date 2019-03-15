@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Filter.Model;
-using ReportPortal.Client.Api.Filter.Request;
-using ReportPortal.Client.Api.Project.Request;
+using ReportPortal.Client.Api.Filter.DataContract;
+using ReportPortal.Client.Api.Project.DataContract;
 using ReportPortal.Client.Common.Model.Filtering;
 using Xunit;
 

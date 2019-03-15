@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Filter.Model;
-using ReportPortal.Client.Api.Filter.Request;
+using ReportPortal.Client.Api.Filter.DataContract;
 using ReportPortal.Client.Common.Model;
 using ReportPortal.Client.Common.Model.Filtering;
 using ReportPortal.Client.Common.Model.Paging;

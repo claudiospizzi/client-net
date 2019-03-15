@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ReportPortal.Client.Api.Launch.Request;
+using ReportPortal.Client.Api.Launch.DataContract;
 using Xunit;
 
 namespace ReportPortal.Client.Tests.Negative

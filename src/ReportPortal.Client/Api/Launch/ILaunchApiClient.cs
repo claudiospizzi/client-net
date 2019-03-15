@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ReportPortal.Client.Api.Launch.Model;
-using ReportPortal.Client.Api.Launch.Request;
+using ReportPortal.Client.Api.Launch.DataContract;
 using ReportPortal.Client.Common.Model;
 using ReportPortal.Client.Common.Model.Filtering;
 using ReportPortal.Client.Common.Model.Paging;

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ReportPortal.Client.Api.Launch.DataContract;
+using ReportPortal.Client.Api.TestItem.DataContract;
 
 namespace ReportPortal.Client.Tests.Api.LogItem
 {

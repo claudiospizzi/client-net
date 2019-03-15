@@ -11,7 +11,7 @@ build_script:
   - dotnet build
 
 test_script:
-  - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=OpenCover /p:CoverletOutput=./Coverage.xml
+  - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=OpenCover /p:CoverletOutput=./Coverage.xml /p:Exclude="[xunit*]*"
 
 after_test:
   - codecov -f .\test\ReportPortal.Client.Tests\Coverage.xml

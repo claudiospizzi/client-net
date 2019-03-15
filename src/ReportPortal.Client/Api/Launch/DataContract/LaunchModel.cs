@@ -23,26 +23,17 @@ namespace ReportPortal.Client.Api.Launch.DataContract
         [DataMember(Name = "mode")]
         public string ModeString { get; set; }
 
-        public LaunchMode Mode
-        {
-            get => EnumConverter.ConvertTo<LaunchMode>(ModeString);
-        }
+        public Mode Mode => EnumConverter.ConvertTo<Mode>(ModeString);
 
         [DataMember(Name = "start_time")]
         public string StartTimeString { get; set; }
 
-        public DateTime StartTime
-        {
-            get => DateTimeConverter.ConvertTo(StartTimeString);
-        }
+        public DateTime StartTime => DateTimeConverter.ConvertTo(StartTimeString);
 
         [DataMember(Name = "end_time")]
         public string EndTimeString { get; set; }
 
-        public DateTime? EndTime
-        {
-            get => EndTimeString == null ? (DateTime?)null : DateTimeConverter.ConvertTo(EndTimeString);
-        }
+        public DateTime? EndTime => EndTimeString == null ? (DateTime?)null : DateTimeConverter.ConvertTo(EndTimeString);
 
         [DataMember(Name = "hasRetries")]
         public bool HasRetries { get; set; }

@@ -19,18 +19,18 @@ namespace ReportPortal.Client
         /// <summary>
         /// Constructor to initialize a new object of service.
         /// </summary>
-        /// <param name="uri">Base URI for REST service.</param>
+        /// <param name="baseUri">Base URI for REST service.</param>
         /// <param name="projectName">A project to work with.</param>
         /// <param name="uuid">UUID given from user's profile page.</param>
         /// <param name="messageHandler">The HTTP handler to use for sending all requests.</param>
-        public ReportPortalClient(Uri uri, string projectName, string uuid, HttpMessageHandler messageHandler)
+        public ReportPortalClient(Uri baseUri, string projectName, string uuid, HttpMessageHandler messageHandler = null)
         {
-            if (!uri.LocalPath.ToUpperInvariant().Contains("API/V1"))
+            if (!baseUri.LocalPath.ToUpperInvariant().Contains("API/V1"))
             {
-                uri = uri.Append("api/v1");
+                baseUri = baseUri.Append("api/v1");
             }
 
-            BaseUri = uri;
+            BaseUri = baseUri;
 
             ProjectName = projectName;
 
@@ -44,17 +44,6 @@ namespace ReportPortal.Client
 #endif
         }
 
-        /// <summary>
-        /// Constructor to initialize a new object of service.
-        /// </summary>
-        /// <param name="uri">Base URI for REST service.</param>
-        /// <param name="project">A project to manage.</param>
-        /// <param name="password">A password for user. Can be UID given from user's profile page.</param>
-        public ReportPortalClient(Uri uri, string project, string password) : this(uri, project, password, null)
-        {
-
-        }
-
         private HttpClient HttpClient { get; }
 
         public Uri BaseUri { get; }
@@ -64,7 +53,7 @@ namespace ReportPortal.Client
         /// </summary>
         public string ProjectName { get; }
 
-        #region ApiClients
+        #region Api Clients
 
         private ILaunchApiClient _launch;
         public ILaunchApiClient Launch

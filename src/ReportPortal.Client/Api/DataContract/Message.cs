@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ReportPortal.Client.Common.Model
+namespace ReportPortal.Client.Api.DataContract
 {
     [DataContract]
     public class Message

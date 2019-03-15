@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Api.Log.DataContract;
-using ReportPortal.Client.Common.Model;
-using ReportPortal.Client.Common.Model.Filtering;
-using ReportPortal.Client.Common.Model.Paging;
 
 namespace ReportPortal.Client.Api.Log
 {

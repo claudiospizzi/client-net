@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace ReportPortal.Client.Common.Model.Paging
+namespace ReportPortal.Client.Api.DataContract
 {
     [DataContract]
     public class PagingContent<T>

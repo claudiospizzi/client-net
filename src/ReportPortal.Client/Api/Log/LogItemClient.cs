@@ -5,10 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Api.Log.DataContract;
-using ReportPortal.Client.Common.Model;
-using ReportPortal.Client.Common.Model.Filtering;
-using ReportPortal.Client.Common.Model.Paging;
 using ReportPortal.Client.Converter;
 using ReportPortal.Client.Extension;
 

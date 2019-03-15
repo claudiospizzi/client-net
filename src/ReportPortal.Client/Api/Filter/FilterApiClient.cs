@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Api.Filter.DataContract;
-using ReportPortal.Client.Common.Model;
-using ReportPortal.Client.Common.Model.Filtering;
-using ReportPortal.Client.Common.Model.Paging;
 using ReportPortal.Client.Extension;
 
 namespace ReportPortal.Client.Api.Filter

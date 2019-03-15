@@ -22,33 +22,33 @@ namespace ReportPortal.Client.Api
             Project = project;
         }
 
-        protected async Task<TResponseModel> SendAsync<TResponseModel, TRequestModel>(HttpMethod httpMethod, Uri requestUri, TRequestModel requestModel)
+        protected async Task<TResponseContract> SendAsync<TResponseContract, TRequestContract>(HttpMethod httpMethod, Uri requestUri, TRequestContract requestContract)
         {
             var httpRequestMessage = new HttpRequestMessage(httpMethod, requestUri);
 
-            if (requestModel != null)
+            if (requestContract != null)
             {
-                var requestContent = ModelSerializer.Serialize<TRequestModel>(requestModel);
+                var serializedRequestContent = ModelSerializer.Serialize<TRequestContract>(requestContract);
 
-                httpRequestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
+                httpRequestMessage.Content = new StringContent(serializedRequestContent, Encoding.UTF8, "application/json");
             }
 
-            var response = await HttpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
-            response.VerifySuccessStatusCode();
+            var httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+            httpResponseMessage.VerifySuccessStatusCode();
 
-            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var responseBody = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            return ModelSerializer.Deserialize<TResponseModel>(responseBody);
+            return ModelSerializer.Deserialize<TResponseContract>(responseBody);
         }
 
-        protected async Task<TResponseModel> GetAsync<TResponseModel>(Uri requestUri)
+        protected async Task<TResponseContract> GetAsync<TResponseContract>(Uri requestUri)
         {
-            return await SendAsync<TResponseModel, object>(HttpMethod.Get, requestUri, null).ConfigureAwait(false);
+            return await SendAsync<TResponseContract, object>(HttpMethod.Get, requestUri, null).ConfigureAwait(false);
         }
 
-        protected async Task<TResponseModel> DeleteAsync<TResponseModel>(Uri requestUri)
+        protected async Task<TResponseContract> DeleteAsync<TResponseContract>(Uri requestUri)
         {
-            return await SendAsync<TResponseModel, object>(HttpMethod.Delete, requestUri, null).ConfigureAwait(false);
+            return await SendAsync<TResponseContract, object>(HttpMethod.Delete, requestUri, null).ConfigureAwait(false);
         }
     }
 }

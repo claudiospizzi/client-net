@@ -30,10 +30,10 @@ namespace ReportPortal.Client.Api.Launch.DataContract
         public string ModeString
         {
             get => EnumConverter.ConvertFrom(Mode);
-            set => Mode = EnumConverter.ConvertTo<LaunchMode>(value);
+            set => Mode = EnumConverter.ConvertTo<Mode>(value);
         }
 
-        public LaunchMode Mode { get; set; }
+        public Mode Mode { get; set; }
 
         /// <summary>
         /// Date time when the launch is executed.

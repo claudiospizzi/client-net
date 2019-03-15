@@ -1,5 +1,5 @@
 ﻿using System;
-using ReportPortal.Client.Common.Model;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Converter;
 using Xunit;
 

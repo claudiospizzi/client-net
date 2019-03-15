@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Api.Launch.DataContract;
 using ReportPortal.Client.Api.TestItem.DataContract;
-using ReportPortal.Client.Common.Model.Filtering;
-using ReportPortal.Client.Common.Model.Paging;
 using Xunit;
 
 namespace ReportPortal.Client.Tests.Api.LaunchItem
@@ -33,7 +32,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
             var launches = await Service.Launch.GetLaunchesAsync(debug: true);
             foreach (var launch in launches.Collection)
             {
-                Assert.Equal(LaunchMode.Debug, launch.Mode);
+                Assert.Equal(Mode.Debug, launch.Mode);
             }
         }
 
@@ -163,7 +162,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
                 Description = "Desc",
                 StartTime = now,
                 Tags = new List<string> { "tag1", "tag2", "tag3" },
-                Mode = LaunchMode.Debug
+                Mode = Mode.Debug
             });
 
             Assert.NotNull(launch.Id);
@@ -173,7 +172,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
             Assert.Equal("Desc", getLaunch.Description);
             Assert.Equal(now.ToString(), getLaunch.StartTime.ToString());
             Assert.Equal(new List<string> { "tag1", "tag2", "tag3" }, getLaunch.Tags);
-            Assert.Equal(LaunchMode.Debug, getLaunch.Mode);
+            Assert.Equal(Mode.Debug, getLaunch.Mode);
 
             var message = await Service.Launch.FinishLaunchAsync(launch.Id, new FinishLaunchRequest
             {
@@ -235,7 +234,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
             {
                 Name = "StartFinishDeleteLaunch",
                 StartTime = DateTime.UtcNow,
-                Mode = LaunchMode.Default
+                Mode = Mode.Default
             });
             Assert.NotNull(launch.Id);
             var message = await Service.Launch.FinishLaunchAsync(launch.Id, new FinishLaunchRequest
@@ -291,7 +290,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
             {
                 Name = "StartForceFinishIncompleteLaunch",
                 StartTime = DateTime.UtcNow,
-                Mode = LaunchMode.Default
+                Mode = Mode.Default
             });
 
             var test = await Service.TestItem.StartTestItemAsync(new StartTestItemRequest
@@ -319,7 +318,7 @@ namespace ReportPortal.Client.Tests.Api.LaunchItem
             {
                 Name = "StartForceFinishIncompleteLaunch",
                 StartTime = DateTime.UtcNow,
-                Mode = LaunchMode.Default
+                Mode = Mode.Default
             });
 
             var getLaunch = await Service.Launch.GetLaunchAsync(launch.Id);

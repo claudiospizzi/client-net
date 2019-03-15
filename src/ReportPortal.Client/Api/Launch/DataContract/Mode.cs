@@ -5,7 +5,7 @@ namespace ReportPortal.Client.Api.Launch.DataContract
     /// <summary>
     /// Describes modes for launches.
     /// </summary>
-    public enum LaunchMode
+    public enum Mode
     {
         [DataMember(Name = "DEFAULT")]
         Default,

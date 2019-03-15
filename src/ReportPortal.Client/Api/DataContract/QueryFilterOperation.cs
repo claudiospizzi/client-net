@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ReportPortal.Client.Common.Model.Filtering
+namespace ReportPortal.Client.Api.DataContract
 {
     public enum QueryFilterOperation
     {

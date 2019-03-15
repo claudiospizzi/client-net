@@ -2,10 +2,9 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using ReportPortal.Client.Common.Model.Paging;
 using ReportPortal.Client.Extension;
 
-namespace ReportPortal.Client.Common.Model.Filtering
+namespace ReportPortal.Client.Api.DataContract
 {
     public class QueryFilter
     {
@@ -19,7 +18,7 @@ namespace ReportPortal.Client.Common.Model.Filtering
         {
             var builder = new StringBuilder();
 
-            if (Paging != null)
+            if (this.Paging != null)
             {
                 builder.Append($"page.page={Paging.Number.ToString(CultureInfo.InvariantCulture)}");
                 builder.Append($"&page.size={Paging.Size.ToString(CultureInfo.InvariantCulture)}");

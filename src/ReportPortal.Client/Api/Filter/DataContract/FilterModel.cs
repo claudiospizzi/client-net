@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using ReportPortal.Client.Common.Model.Filtering;
+using ReportPortal.Client.Api.DataContract;
 using ReportPortal.Client.Converter;
 
 namespace ReportPortal.Client.Api.Filter.DataContract

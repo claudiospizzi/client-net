@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace ReportPortal.Client.Api.User.DataContract
 {
@@ -10,5 +11,8 @@ namespace ReportPortal.Client.Api.User.DataContract
 
         [DataMember(Name = "email")]
         public string Email { get; set; }
+
+        [DataMember(Name = "assigned_projects")]
+        public IDictionary<string, ProjectAssigment> AssignedProjects { get; set; }
     }
 }
